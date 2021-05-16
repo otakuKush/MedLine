@@ -1,0 +1,28 @@
+{
+  "table": [
+    {
+        "column": "some-column-name1",
+        "internal-type": "whatever the database calls the type such as varchar(255), int8, numeric(10,2), etc etc",
+        "db-adaptor-type": "the Java type for configuring the db-adaptor - STRING, LONG, DOUBLE, DATE, TIMESTAMP, LOCAL_DATE or LOCAL_TIME.",
+        "domain-property-type": "the best guess equivalent domain property type - STRING, NUMBER, INTEGER or BOOLEAN.",
+        "primary-key": false,
+        "required": false
+    },
+    { 
+          "column": "some-column-name2",
+          "internal-type": "varchar(255)",
+          "db-adaptor-type": "STRING",
+          "domain-property-type": "STRING",
+          "primary-key": false,
+          "required": true
+    }, 
+    {
+          "column": "some-column-name3",
+          "internal-type": "int8",
+          "db-adaptor-type": "LONG",
+          "domain-property-type": "INTEGER",
+          "primary-key": false,
+          "required": false
+    }
+  ]
+}
