@@ -1,0 +1,146 @@
+﻿@model WebApplication2.Models.RegistrationViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- register24:03-->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css" />
+
+    <link rel="stylesheet" type="text/css" href="~/assets/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.ico">
+    <title>Preclinic - Medical & Hospital</title>
+
+    <style>
+        .ms-panel-header {
+            position: relative;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .ms-panel-custome {
+            display: flex;
+            justify-content: space-between;
+        }
+        .register {
+            background-color: #fff;
+            border: 1px solid #eaeaea;
+            margin-left: 26%;
+            padding: 20px;
+            width: 50%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="main-wrapper  account-wrapper">
+        <div class="account-page">
+            <div class="account-center">
+                <div class="account-box register">
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-signin", role = "form", style = "margin-left: -195px;" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="row" style="margin-left: 181px;">
+                            <div class="account-logo" style="margin-left: 43%;">
+                                <a href="index-2.html"><img src="~/assets/img/logo-dark.png" alt=""></a>
+                            </div>
+                            <div class="col-xl-12 col-md-12">
+                                <div class="ms-panel">
+                                    <br />
+
+                                    <div class="ms-panel-body">
+                                        <form class="needs-validation" novalidate="">
+                                            <div class="form-row">
+
+                                                <div class="col-md-6 mb-3">
+                                                    @Html.LabelFor(m => m.FirstName)
+                                                    <div class="input-group">
+                                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "Enter First Name" })
+                                                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    @Html.LabelFor(model => model.LastName)
+                                                    <div class="input-group">
+                                                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Last Name" } })
+                                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-6 mb-3">
+                                                    @Html.LabelFor(model => model.Email)
+                                                    <div class="input-group">
+                                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Email Address" } })
+                                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    @Html.LabelFor(model => model.ContactNo)
+                                                    <div class="input-group">
+                                                        @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Phone Number" } })
+                                                        @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-6 mb-3">
+                                                    @Html.LabelFor(model => model.UserName)
+                                                    <div class="input-group">
+                                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter User Name" } })
+                                                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    @Html.LabelFor(model => model.Password)
+                                                    <div class="input-group">
+                                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Password" } })
+                                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-6 mb-3">
+                                                    @Html.LabelFor(model => model.UserRoleID)
+                                                    <div class="input-group">
+                                                        @Html.DropDownListFor(model => model.UserRoleID, new[]{
+                                                         new SelectListItem() {Text = "Doctors", Value="1"},
+                                                              new SelectListItem() {Text = "Nurses", Value="2"},
+                                                              new SelectListItem() {Text = "Staffs", Value="3"}
+                                                         }, "---Select an option---", new { @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <button class="btn btn-warning mt-4 d-inline w-20" type="reset">Reset</button>
+                                            <button class="btn btn-primary mt-4 d-inline w-20" type="submit" id="btnsubmit">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

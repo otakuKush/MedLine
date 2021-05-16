@@ -1,0 +1,185 @@
+﻿@model WebApplication2.Models.PatientViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css" />
+
+    <link rel="stylesheet" type="text/css" href="~/assets/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.ico">
+    <title>Preclinic - Medical & Hospital</title>
+
+    <style>
+        .ms-panel-header {
+            position: relative;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .ms-panel-custome {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ms-content-wrapper">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row" style="margin-top: 55px; margin-left: 180px;">
+                <div class="col-md-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb pl-0">
+                            <li class="breadcrumb-item" style="margin-left: 3px;"><a href="#"> Home</a></li>
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Patient")">Patient</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Add Patients</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-xl-12 col-md-12">
+                    <div class="ms-panel">
+                        <div class="ms-panel-header ms-panel-custome">
+                            <h3>Add Patient</h3>
+                            <a href="doctor-list.html" class="ms-text-primary">Patients List</a>
+                        </div>
+                        <br />
+
+                        <div class="ms-panel-body">
+                            <form class="needs-validation" novalidate="">
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        @Html.LabelFor(model => model.FirstName)
+                                        <div class="input-group">
+                                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter First Name" } })
+                                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        @Html.LabelFor(model => model.LastName)
+                                        <div class="input-group">
+                                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Last Name" } })
+                                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        @Html.LabelFor(model => model.PhoneNumber)
+                                        <div class="input-group">
+                                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Phone Number" } })
+                                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        @Html.LabelFor(model => model.Address)
+                                        <div class="input-group">
+                                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Address" } })
+                                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        @Html.LabelFor(model => model.EmailID)
+                                        <div class="input-group">
+                                            @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Email Address" } })
+                                            @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        @Html.LabelFor(model => model.DateOfBirth)
+                                        <div class="input-group">
+                                            @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter D.O.B" } })
+                                            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        @Html.LabelFor(model => model.Age)
+                                        <div class="input-group">
+                                            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Age" } })
+                                            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        @Html.LabelFor(model => model.Gender)
+                                        <div class="input-group">
+                                            Male:   @Html.RadioButton("Gender", "Male", new { htmlAttributes = new { @class = "form-control" } })
+                                            Female: @Html.RadioButton("Gender", "Female", new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        @Html.LabelFor(model => model.BloodGroup)
+                                        <div class="input-group">
+                                            @Html.DropDownListFor(model => model.BloodGroup, new[]{
+                                           new SelectListItem() {Text = "A+", Value="1"},
+                                                new SelectListItem() {Text = "B+", Value="2"},
+                                                new SelectListItem() {Text = "AB+", Value="3"},
+                                                new SelectListItem() {Text = "A-", Value="4"},
+                                                new SelectListItem() {Text = "B-", Value="5"},
+                                                new SelectListItem() {Text = "AB-", Value="6"},
+                                                new SelectListItem() {Text = "O+", Value="7"},
+                                                new SelectListItem() {Text = "O-", Value="8"}
+                                           }, "---Select an option---", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        @Html.LabelFor(model => model.MartialStatus)
+                                        <div class="input-group">
+                                            @Html.DropDownListFor(model => model.MartialStatus, new[]{
+                                         new SelectListItem() {Text = "Married", Value="1"},
+                                              new SelectListItem() {Text = "UnMarried", Value="2"}
+                                         }, "---Select an option---", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        @Html.LabelFor(model => model.ArrivalDate)
+                                        <div class="input-group">
+                                            @Html.EditorFor(model => model.ArrivalDate, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Arrivale Date" } })
+                                            @Html.ValidationMessageFor(model => model.ArrivalDate, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        @Html.LabelFor(model => model.DischargeDate)
+                                        <div class="input-group">
+                                            @Html.EditorFor(model => model.DischargeDate, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Discharge Date" } })
+                                            @Html.ValidationMessageFor(model => model.DischargeDate, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-warning mt-4 d-inline w-20" type="reset">Reset</button>
+                                <button class="btn btn-primary mt-4 d-inline w-20" type="submit" id="btnsubmit">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</body>
+</html>
